@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Password:
+  = @authorization.password
+%p
+  %b Authorized:
+  = @authorization.authorized
+%p
+  %b User:
+  = @authorization.user
+
+= link_to 'Edit', edit_authorization_path(@authorization)
+\|
+= link_to 'Back', authorizations_path
