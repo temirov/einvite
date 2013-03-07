@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   validates_presence_of :email
   validates_uniqueness_of :email
 
-  after_initialize :build_authorization, :unless => :authorization
+#  after_initialize :build_authorization, :unless => :authorization
 
   before_save { email.downcase! }
 

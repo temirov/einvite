@@ -1,8 +1,12 @@
 class Authorization < ActiveRecord::Base
   has_secure_password
+  
+  belongs_to :user
+  attr_accessor :email
 
-  attr_accessible :password, :password_confirmation, :session_token, :new_password
+  attr_accessible :password, :password_confirmation, :session_token, :new_password, :email, :user_attributes
 
+  after_initialize :build_user, :unless => :user 
   before_save :create_session_token
 
   def new_password
