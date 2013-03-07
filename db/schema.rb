@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130304031725) do
+ActiveRecord::Schema.define(:version => 20130307180526) do
 
   create_table "authorizations", :force => true do |t|
     t.integer  "user_id"
@@ -27,10 +27,12 @@ ActiveRecord::Schema.define(:version => 20130304031725) do
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.integer  "authorization_id"
   end
 
+  add_index "users", ["authorization_id"], :name => "index_users_on_authorization_id"
   add_index "users", ["email"], :name => "index_users_on_email"
 
 end
