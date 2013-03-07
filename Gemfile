@@ -27,6 +27,12 @@ group :test do
   gem 'database_cleaner'
 end
 
+group :production do
+  # Cloud9 bundle doesn't regard the group instruction
+  # Commenting out for now
+  # gem 'thin'
+end
+
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
@@ -34,4 +40,3 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use debugger
 gem 'debugger'
-gem 'thin'
