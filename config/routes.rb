@@ -1,13 +1,10 @@
 EInvite::Application.routes.draw do
-  
-  resources :authorizations
+
+  resources :authorizations, only: [:new, :create, :destroy]
   resources :users
 
-  resources :sessions, only: [:new, :create, :destroy]
+  match '/login',  to: 'authorizations#new'
+  match '/logout', to: 'authorizations#destroy', via: :delete
 
-  match '/register',  to: 'users#new'
-  match '/login',  to: 'sessions#new'
-  match '/logout', to: 'sessions#destroy', via: :delete
-
-  root :to => 'users#index'
+  root :to => 'users#edit'
 end
