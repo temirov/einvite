@@ -1,7 +1,7 @@
 module SessionsHelper
   def sign_in(user)
     # cookies.permanent[:remember_token] = user.remember_token
-    debugger
+    # debugger
     cookies[:session_token] = { value:   user.authorization.session_token,
                                expires: 2.hour.from_now.utc }
     self.current_user = user
