@@ -1,19 +1,16 @@
 = form_for @authorization do |f|
   - if @authorization.errors.any?
     #error_explanation
-      %h2= "#{pluralize(@authorization.errors.count, "error")} prohibited this authorization from being saved:"
+      %h2= "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
       %ul
         - @authorization.errors.full_messages.each do |msg|
           %li= msg
-
+  .field
+    = f.fields_for :user do |builder|
+      = builder.label :email
+      = builder.text_field :email
   .field
     = f.label :password
-    = f.text_field :password
-  .field
-    = f.label :authorized
-    = f.check_box :authorized
-  .field
-    = f.label :user
-    = f.text_field :user
+    = f.text_field :password, :value => @authorization.new_password
   .actions
-    = f.submit 'Save'
+    = f.submit 'Log In'
