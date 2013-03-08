@@ -87,6 +87,8 @@ class UsersController < ApplicationController
 
   private
     def signed_in_user
+      # store the initial path
+      session[:return_to] ||= request.referer
       redirect_to login_path, notice: "Please sign in." unless signed_in?
     end
 end
