@@ -7,7 +7,7 @@ module AuthorizationsHelper
   end
 
   def signed_in?
-    #    debugger
+    # debugger
     !current_user.nil?
   end
 
@@ -21,10 +21,7 @@ module AuthorizationsHelper
   end
 
   def current_user
-    @authorization ||= Authorization.find_by_session_token(cookies[:session_token])
-    unless @authorization.nil?
-      @current_user ||= User.find_by_id(@authorization.user_id)
-    end
-    @current_user
+    @authorization ||= Authorization.find_by_session_token(cookies[:session_token]) unless cookies[:session_token].nil?
+    @current_user ||= @authorization.user unless @authorization.nil?
   end
 end
