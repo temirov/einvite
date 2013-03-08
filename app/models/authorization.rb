@@ -2,6 +2,7 @@ class Authorization < ActiveRecord::Base
   has_secure_password
   
   belongs_to :user
+  accepts_nested_attributes_for :user
   attr_accessor :email
 
   attr_accessible :password, :password_confirmation, :session_token, :new_password, :email, :user_attributes
