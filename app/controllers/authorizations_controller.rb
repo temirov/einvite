@@ -3,7 +3,6 @@ class AuthorizationsController < ApplicationController
   # GET /authorizations/new
   # GET /authorizations/new.json
   def new
-    debugger
     @authorization = Authorization.new
 
     respond_to do |format|
@@ -13,26 +12,27 @@ class AuthorizationsController < ApplicationController
   end
 
   def create
-    debugger
     @user = User.find_by_email(params[:authorization][:user_attributes][:email].downcase)
     if @user
-      if @user.authorization.try(:authenticate, params[:authorization][:user_attributes][:password])
+      if @user.authorization.try(:authenticate, params[:authorization][:password])
         # Sign the user in and redirect to the requested page.
         # redirect_to root_url
-        successful_authorization
+        successful_authorization @user
       else
-        debugger
+        @authorization = @user.authorization
         # flash.now[:error] = 'Invalid email/password combination'
         # render 'new'
-        format.html { render action: "new" }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        respond_to do |format|
+          format.html { render action: "new" }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
       end
     else
       @authorization = Authorization.new(params[:authorization])
 
       respond_to do |format|
         if @authorization.save
-          successful_authorization
+          successful_authorization @authorization.user
           # redirect_to root_url
           # sign_in @authorization.user
           # format.html { redirect_to session[:return_to], notice: 'Authorization was successfully created.' }
@@ -51,8 +51,12 @@ class AuthorizationsController < ApplicationController
   end
 
   private
-    def successful_authorization
-      sign_in @user
-      redirect_to session.delete(:return_to), notice: 'Authorization was successful'
+    def successful_authorization(user)
+      sign_in user
+      # redirect_to session[:return_to], notice: 'Authorization was successful'
+      # session.delete(:return_to)
+      # redirect_to :back, notice: 'Authorization was successful'
+      debugger
+      redirect_to edit_user_path(user.id)
     end
 end
