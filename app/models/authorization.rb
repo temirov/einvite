@@ -11,6 +11,10 @@ class Authorization < ActiveRecord::Base
   # before_save :create_session_token 
   # after_create :update_user_id
   before_create :create_session_token
+  
+  validates_confirmation_of :password
+  validates_presence_of :password_confirmation, on: :create
+  validates_presence_of :password, on: :create
 
   def new_password
     (0...4).map{ SecureRandom.random_number(10) }.join
