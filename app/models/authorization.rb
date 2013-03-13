@@ -8,9 +8,9 @@ class Authorization < ActiveRecord::Base
   attr_accessible :password, :password_confirmation, :session_token, :new_password, :email, :user_attributes
 
   after_initialize :build_user, :unless => :user 
-  before_save :create_session_token 
+  # before_save :create_session_token 
   # after_create :update_user_id
-  before_create :create_session_token, :update_user_id
+  before_create :create_session_token
 
   def new_password
     (0...4).map{ SecureRandom.random_number(10) }.join
@@ -20,10 +20,6 @@ class Authorization < ActiveRecord::Base
 
     def create_session_token
       self.session_token = SecureRandom.urlsafe_base64
-    end
-
-    def update_user_id
-      user.authorization ||= self
     end
 
     def create_password
