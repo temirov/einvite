@@ -17,22 +17,14 @@ class AuthorizationsController < ApplicationController
       if @user.authorization.try(:authenticate, params[:authorization][:password])
         successful_authorization @user
       else
-        @authorization = @user.authorization
-
-        respond_to do |format|
-          format.html { render action: "new" }
-          format.json { render json: @user.errors, status: :unprocessable_entity }
-        end
+        unsuccessful_authorization @user.authorization
       end
     else
       @authorization = Authorization.new(params[:authorization])
       if @authorization.save
         successful_authorization @authorization.user
       else
-        respond_to do |format|
-          format.html { render action: "new" }
-          format.json { render json: @authorization.errors, status: :unprocessable_entity }
-        end
+        unsuccessful_authorization @authorization
       end
     end
   end
@@ -48,6 +40,15 @@ class AuthorizationsController < ApplicationController
       # redirect_to session[:return_to], notice: 'Authorization was successful'
       # session.delete(:return_to)
       # redirect_to :back, notice: 'Authorization was successful'
-      redirect_to edit_user_path(user.id)
+      respond_to do |format|
+        format.html { redirect_to edit_user_path(user.id) }
+      end
+    end
+    
+    def unsuccessful_authorization(authorization)
+      respond_to do |format|
+        format.html { render action: "new" }
+        format.json { render json: authorization.errors, status: :unprocessable_entity }
+      end
     end
 end
