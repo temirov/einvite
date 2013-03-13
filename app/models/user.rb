@@ -1,12 +1,12 @@
 class User < ActiveRecord::Base
-  has_one :authorization, :dependent => :destroy
+  has_one :authorization, :inverse_of => :user, :dependent => :destroy
   accepts_nested_attributes_for :authorization, :allow_destroy => true
   attr_accessible :email, :name, :authorization_attributes
 
   validates_presence_of :email
   validates_uniqueness_of :email
 
-#  after_initialize :build_authorization, :unless => :authorization
+  # after_initialize :build_authorization, :unless => :authorization
 
   before_save { email.downcase! }
 
