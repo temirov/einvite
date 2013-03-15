@@ -16,3 +16,7 @@
 
 #Ignore Cloud9 stuff
 .c9revisions
+
+#Ignore Sublime Text files
+*sublime-*
+
