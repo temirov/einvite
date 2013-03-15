@@ -11,6 +11,8 @@
       = builder.text_field :email
   .field
     = f.label :password
-    = f.text_field :password, :value => @authorization.new_password
+    = f.text_field :password
   .actions
     = f.submit 'Log In'
+  .field
+    = f.label @authorization.new_password, :id => "red"
