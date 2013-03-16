@@ -3,7 +3,8 @@ class Authorization < ActiveRecord::Base
   
   belongs_to :user, :inverse_of => :authorization
   accepts_nested_attributes_for :user
-  attr_accessor :email, :new_password, :session_token
+  attr_accessor :email, :new_password
+  # , :session_token
 
   attr_accessible :password, :password_confirmation, :session_token, :new_password, :email, :user_attributes
 
@@ -11,10 +12,22 @@ class Authorization < ActiveRecord::Base
   after_initialize :create_new_password
   before_save :create_session_token, :sync_passwords
 
+  # alias_method :user_orig, :user
+  # def user
+  #   ret = user_orig
+
+  #   unless @generated
+  #     @generated = true
+  #     gen_tree
+  #     sort_tree
+  #   end
+
+  #   ret
+  # end
+
   private
 
     def create_session_token
-      debugger
       self.session_token = SecureRandom.urlsafe_base64
     end
 
