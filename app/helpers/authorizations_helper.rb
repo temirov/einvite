@@ -1,6 +1,6 @@
 module AuthorizationsHelper
   def sign_in(authorization)
-    debugger
+    # debugger
     cookies[:session_token] = { value:   authorization.session_token,
                                 expires: 2.hour.from_now.utc }
     self.current_user = authorization.user
@@ -20,9 +20,9 @@ module AuthorizationsHelper
   end
 
   def current_user
-    debugger
+    # debugger
 #    @authorization ||= Authorization.find_by_session_token(cookies[:session_token]) unless cookies[:session_token].nil?
 #    @current_user ||= @authorization.user unless @authorization.nil?
-    @current_user ||= Authorization.find_by_session_token(cookies[:session_token]).try(:user) unless cookies[:session_token].nil?
+    @current_user ||= Authorization.find_by_session_token(cookies[:session_token]).try(:user) if cookies[:session_token].present?
   end
 end
