@@ -6,5 +6,5 @@ EInvite::Application.routes.draw do
   match '/login',  to: 'authorizations#new'
   match '/logout', to: 'authorizations#destroy', via: :delete
 
-  root :to => 'authorizations#new'
+  root :to => 'users#index'
 end
