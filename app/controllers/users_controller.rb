@@ -87,12 +87,15 @@ class UsersController < ApplicationController
 
   private
     def signed_in_user
-      # store the initial path
       unless signed_in?
-        session[:return_to] ||= request.referer
-        respond_to do |format|
-          format.html { redirect_to login_path, notice: "Please sign in." }
-        end
+        redirect_to login_path, :notice => "Please, sign in."  
+
+        # respond_to do |format|
+        #   format.html { 
+        #     flash[:notice] = "Please, sign in."
+        #     redirect_to login_path  
+        #   }
+        # end
       end
     end
 end
