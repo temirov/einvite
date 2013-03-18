@@ -27,6 +27,10 @@ group :test do
   gem 'database_cleaner'
 end
 
+group :development do
+  gem 'thin'
+end
+
 group :production do
   # Cloud9 bundle doesn't regard the group instruction
   # Commenting out for now
