@@ -2,42 +2,33 @@ class Authorization < ActiveRecord::Base
   has_secure_password
   
   belongs_to :user, :inverse_of => :authorization
-  accepts_nested_attributes_for :user
+  accepts_nested_attributes_for :user, :update_only => true
   attr_accessor :email, :new_password
-  # , :session_token
 
-  attr_accessible :password, :password_confirmation, :session_token, :new_password, :email, :user_attributes
+  attr_accessible :password, :password_confirmation, :session_token, :new_password, :email, :user_attributes, :plain_password
 
   after_initialize :build_user, :unless => :user 
-  after_initialize :create_new_password
-  before_save :create_session_token, :sync_passwords
-
-  # alias_method :user_orig, :user
-  # def user
-  #   ret = user_orig
-
-  #   unless @generated
-  #     @generated = true
-  #     gen_tree
-  #     sort_tree
-  #   end
-
-  #   ret
-  # end
+  before_validation :create_new_password, :unless => :password
+  before_save :create_session_token, :unless => :session_token
+  # , :create_new_password, :sync_passwords
+  # before_validation :create_session_token, :create_new_password, :sync_passwords
 
   private
-
     def create_session_token
       self.session_token = SecureRandom.urlsafe_base64
     end
 
     def create_new_password
       self.new_password = (0...4).map{ SecureRandom.random_number(10) }.join
+      self.plain_password = self.new_password
+      self.password = self.new_password
+      self.password_confirmation = self.new_password
     end
 
     def sync_passwords
-      self.plain_password = self.password
-      self.password_confirmation = self.password
+      self.plain_password = self.new_password
+      self.password = self.new_password
+      self.password_confirmation = self.new_password
     end
 
     def create_password
