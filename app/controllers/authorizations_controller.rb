@@ -11,31 +11,52 @@ class AuthorizationsController < ApplicationController
     end
   end
 
-  def create
-    debugger
+  def edit
+    @authorization = Authorization.find(params[:id])
+  end
 
-    @user = User.find_by_email(params[:authorization][:user_attributes][:email].downcase)
+  def update
+    @authorization = Authorization.find(params[:id])
 
-    # TODO: Horrible code
-    # MUST refactor 
-
-    if @user.present?
-      @authorization = @user.authorization
+    respond_to do |format|
       if @authorization.try(:authenticate, params[:authorization][:password])
-        successful_authorization @authorization
+        sign_in @authorization
+        format.html { redirect_to edit_user_path(@authorization.user), notice: 'Logged in successfully.' }
+        format.json { head :no_content }
       else
-        unsuccessful_authorization @authorization
+        format.html { render action: "edit" }
+        format.json { render json: @authorization.errors, status: :unprocessable_entity }
       end
-    else
-      @authorization = Authorization.new(params[:authorization])
-      if @authorization.save
-        successful_authorization @authorization 
-      else
-        unsuccessful_authorization @authorization 
-      end   
     end
+  end
 
-    # @authorization.save ? successful_authorization(@authorization) : unsuccessful_authorization(@authorization)
+  def create
+    @authorization = Authorization.includes(:user).where("users.email" => params[:authorization][:user_attributes][:email].downcase).first
+    
+    # TODO: redundant code, refactor!
+
+    respond_to do |format|
+      if @authorization.present? 
+        if @authorization.update_attributes(params[:authorization])
+          PasswordMailer.password_email(@authorization).deliver        
+          format.html { redirect_to edit_authorization_path(@authorization), notice: 'Password was sent successfully.' }
+          format.json { render json: @authorization, status: :created, location: @authorization }
+        else
+          format.html { render action: "new" }
+          format.json { render json: @authorization.errors, status: :unprocessable_entity }
+        end
+      else
+        @authorization = Authorization.new(params[:authorization])
+        if @authorization.save
+          PasswordMailer.password_email(@authorization).deliver
+          format.html { redirect_to edit_authorization_path(@authorization), notice: 'Password was sent successfully.' }
+          format.json { render json: @authorization, status: :created, location: @authorization }
+        else
+          format.html { render action: "new" }
+          format.json { render json: @authorization.errors, status: :unprocessable_entity }
+        end
+      end
+    end
   end
   
   def destroy
@@ -44,8 +65,17 @@ class AuthorizationsController < ApplicationController
   end
 
   private
+    def authorization_redirect(authorization_block)
+      if authorization_block
+        successful_authorization @authorization 
+      else
+        unsuccessful_authorization @authorization 
+      end 
+    end
+
     def successful_authorization(authorization)
       debugger
+      PasswordMailer.password_email(authorization).deliver
       sign_in authorization
       # redirect_to session[:return_to], notice: 'Authorization was successful'
       # session.delete(:return_to)
