@@ -64,7 +64,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to edit_user_path(@user), notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -88,7 +88,7 @@ class UsersController < ApplicationController
   private
     def signed_in_user
       unless signed_in?
-        redirect_to login_path, :notice => "Please, sign in."  
+        redirect_to login_path, :notice => "Please, log in."  
 
         # respond_to do |format|
         #   format.html { 
