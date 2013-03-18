@@ -1,6 +1,6 @@
 EInvite::Application.routes.draw do
 
-  resources :authorizations, only: [:new, :create, :destroy]
+  resources :authorizations, only: [:new, :create, :edit, :update, :destroy]
   resources :users
 
   match '/login',  to: 'authorizations#new'
