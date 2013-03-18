@@ -20,9 +20,6 @@ module AuthorizationsHelper
   end
 
   def current_user
-    # debugger
-#    @authorization ||= Authorization.find_by_session_token(cookies[:session_token]) unless cookies[:session_token].nil?
-#    @current_user ||= @authorization.user unless @authorization.nil?
     @current_user ||= Authorization.find_by_session_token(cookies[:session_token]).try(:user) if cookies[:session_token].present?
   end
 end
