@@ -20,6 +20,7 @@ class AuthorizationsController < ApplicationController
 
     respond_to do |format|
       if @authorization.try(:authenticate, params[:authorization][:password])
+        reset_session
         sign_in @authorization
         format.html { redirect_to edit_user_path(@authorization.user), notice: 'Logged in successfully.' }
         format.json { head :no_content }
