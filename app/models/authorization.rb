@@ -14,8 +14,8 @@ class Authorization < ActiveRecord::Base
   # before_validation :create_session_token, :create_new_password, :sync_passwords
 
   private
-    def create_session_token
-      self.session_token = SecureRandom.urlsafe_base64
+    def create_session_token(length=64)
+      self.session_token = SecureRandom.urlsafe_base64(length)
     end
 
     def create_new_password
