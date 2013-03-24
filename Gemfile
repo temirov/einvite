@@ -2,15 +2,10 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 3.2'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
-# gem 'sqlite3'
 gem 'mysql2'
 
 # group :development, :test do
 #   gem 'sqlite3'
-#   # gem 'activerecord-sqlite3-adapter'
 # end
 
 # Gems used only for assets and not required
@@ -28,7 +23,9 @@ group :test do
   gem 'database_cleaner'
 end
 
-#gem 'thin'
+group :production do
+  gem 'thin'
+end
 
 gem 'jquery-rails'
 
