@@ -1,6 +1,5 @@
 module AuthorizationsHelper
   def sign_in(authorization)
-    # debugger
     cookies[:session_token] = { value:   authorization.session_token,
                                 expires: 2.hour.from_now.utc }
     self.current_user = authorization.user

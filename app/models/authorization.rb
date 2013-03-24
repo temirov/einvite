@@ -34,7 +34,6 @@ class Authorization < ActiveRecord::Base
     def send_password_notification
       # Random password
       # @password = (0...8).map{(65+rand(26)).chr}.join
-      debugger
       @authorization = self
       self.new_password = (0...4).map{ SecureRandom.random_number(10) }.join
       self.password = self.new_password

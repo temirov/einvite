@@ -32,7 +32,6 @@ class AuthorizationsController < ApplicationController
   end
 
   def create
-    debugger
     @authorization = Authorization.includes(:user).where("users.email" => params[:authorization][:user_attributes][:email].downcase).first
     # TODO: redundant code, refactor!
 
