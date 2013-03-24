@@ -14,7 +14,6 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
-  gem 'haml-rails'
 end
 
 group :test do
@@ -25,6 +24,7 @@ end
 
 group :production do
   gem 'thin'
+  gem 'haml-rails'
 end
 
 gem 'jquery-rails'
