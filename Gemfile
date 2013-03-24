@@ -9,7 +9,8 @@ gem 'rails', '~> 3.2.1'
 # gem 'mysql2'
 
 group :development, :test do
-  gem 'sqlite3', :require => 'sqlite3'
+  gem 'sqlite3'
+  # gem 'activerecord-sqlite3-adapter'
 end
 
 # Gems used only for assets and not required
