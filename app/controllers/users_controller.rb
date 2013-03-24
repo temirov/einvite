@@ -61,7 +61,6 @@ class UsersController < ApplicationController
   # PUT /users/1.json
   def update
     @user = User.find(params[:id])
-
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to edit_user_path(@user), notice: 'User was successfully updated.' }
@@ -84,18 +83,4 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
-
-  private
-    def signed_in_user
-      unless signed_in?
-        redirect_to login_path, :notice => "Please, log in."  
-
-        # respond_to do |format|
-        #   format.html { 
-        #     flash[:notice] = "Please, sign in."
-        #     redirect_to login_path  
-        #   }
-        # end
-      end
-    end
 end

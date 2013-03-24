@@ -1,0 +1,20 @@
+%h1 Listing competitions
+
+%table
+  %tr
+    %th Name
+    %th
+    %th
+    %th
+
+  - @competitions.each do |competition|
+    %tr
+      %td= competition.name
+      / %td= link_to 'Show', user_competition_path(current_user, competition)
+      / %td= link_to 'Edit', edit_user_competition_path(current_user, competition)
+      %td= link_to 'Edit', edit_competition_path(competition)
+      %td= link_to 'Destroy', competition, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Competition', new_user_competition_path(current_user)

@@ -14,9 +14,12 @@
 /log/*.log
 /tmp
 
-#Ignore Cloud9 stuff
+# Ignore Cloud9 stuff
 .c9revisions
 
-#Ignore Sublime Text files
-*sublime-*
+# Ignore Sublime Text files
+eInvite.sublime-project
+eInvite.sublime-workspace
 
+# Ignore Heroku-related environment
+.env

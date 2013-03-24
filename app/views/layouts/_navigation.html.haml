@@ -1,0 +1,13 @@
+= link_to_unless_current "Home", root_path
+\|
+- if signed_in?
+  = link_to_unless_current 'Competitions', user_competitions_path(current_user)
+  \|
+  Welcome, 
+  = link_to_unless_current current_user.email_or_name, edit_user_path(current_user)
+  \|
+  = link_to_unless_current 'Log Out', logout_path, :method => :delete
+- else
+  Please,
+  = link_to_unless_current "log in", login_path
+  / = render 'layouts/authorization_new_form'

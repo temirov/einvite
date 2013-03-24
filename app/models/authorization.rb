@@ -1,44 +1,50 @@
+require "delayed_job"
+
 class Authorization < ActiveRecord::Base
   has_secure_password
   
-  belongs_to :user, :inverse_of => :authorization
-  accepts_nested_attributes_for :user, :update_only => true
+  belongs_to :user, 
+             :inverse_of => :authorization, 
+             :autosave => true
+
+  accepts_nested_attributes_for :user, 
+                                :update_only => true
+
   attr_accessor :email, :new_password
 
-  attr_accessible :password, :password_confirmation, :session_token, :new_password, :email, :user_attributes, :plain_password
+  attr_accessible :password, 
+                  :new_password, 
+                  :session_token, 
+                  :email, 
+                  :user_attributes
 
   after_initialize :build_user, :unless => :user 
-  before_validation :create_new_password, :unless => :password
+  before_validation :send_password_notification, :unless => :password
   before_save :create_session_token, :unless => :session_token
-  # , :create_new_password, :sync_passwords
-  # before_validation :create_session_token, :create_new_password, :sync_passwords
+
+  # validate :alarm_set_in_the_future
 
   private
-    def create_session_token(length=64)
-      self.session_token = SecureRandom.urlsafe_base64(length)
+    def alarm_set_in_the_future
+      if time <= DateTime.current
+        errors.add(:alarm, "Please Choose A Future Date & Time")
+      end
     end
 
-    def create_new_password
-      self.new_password = (0...4).map{ SecureRandom.random_number(10) }.join
-      self.plain_password = self.new_password
-      self.password = self.new_password
-      self.password_confirmation = self.new_password
-    end
-
-    def sync_passwords
-      self.plain_password = self.new_password
-      self.password = self.new_password
-      self.password_confirmation = self.new_password
-    end
-
-    def create_password
+    def send_password_notification
       # Random password
       # @password = (0...8).map{(65+rand(26)).chr}.join
+      debugger
+      @authorization = self
+      self.new_password = (0...4).map{ SecureRandom.random_number(10) }.join
+      self.password = self.new_password
+      self.password_confirmation = self.new_password
+      # PasswordMailer.delay.password_email(@authorization)
+      PasswordMailer.password_email(self).deliver
+    end
 
-      @password = (0...4).map{ SecureRandom.random_number(10) }.join
-
-      self.password = @password
-      self.password_confirmation = @password
+    def create_session_token(length=64)
+      self.session_token = SecureRandom.urlsafe_base64(length)
     end
     
     def self.sweep(time = 2.hour)

@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @competition.name
+
+= link_to 'Edit', edit_competition_path(@competition)
+/ \|
+/ = link_to 'Back', user_competitions_path(current_user)

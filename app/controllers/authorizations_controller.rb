@@ -32,14 +32,15 @@ class AuthorizationsController < ApplicationController
   end
 
   def create
+    debugger
     @authorization = Authorization.includes(:user).where("users.email" => params[:authorization][:user_attributes][:email].downcase).first
-    
     # TODO: redundant code, refactor!
 
     respond_to do |format|
       if @authorization.present? 
         if @authorization.update_attributes(params[:authorization])
-          PasswordMailer.password_email(@authorization).deliver        
+          # PasswordMailer.password_email(@authorization).deliver        
+          # PasswordMailer.delay.password_email(@authorization)        
           format.html { redirect_to edit_authorization_path(@authorization), notice: 'Password was sent successfully.' }
           format.json { render json: @authorization, status: :created, location: @authorization }
         else
@@ -49,7 +50,8 @@ class AuthorizationsController < ApplicationController
       else
         @authorization = Authorization.new(params[:authorization])
         if @authorization.save
-          PasswordMailer.password_email(@authorization).deliver
+          # PasswordMailer.password_email(@authorization).deliver
+          # PasswordMailer.delay.password_email(@authorization)
           format.html { redirect_to edit_authorization_path(@authorization), notice: 'Password was sent successfully.' }
           format.json { render json: @authorization, status: :created, location: @authorization }
         else

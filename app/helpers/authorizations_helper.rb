@@ -22,4 +22,8 @@ module AuthorizationsHelper
   def current_user
     @current_user ||= Authorization.find_by_session_token(cookies[:session_token]).try(:user) if cookies[:session_token].present?
   end
+
+  def authorization 
+    @authorization ||= Authorization.new
+  end
 end
