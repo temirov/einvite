@@ -19,15 +19,26 @@ test: &test
   password:
   socket: /tmp/mysql.sock
 
+#development:
+#  adapter: mysql2
+#  encoding: utf8
+#  reconnect: false
+#  database: einvite_development
+#  pool: 5
+#  username: root
+#  password:
+#  socket: /tmp/mysql.sock
+  
 development:
   adapter: mysql2
   encoding: utf8
-  reconnect: false
-  database: einvite_development
+  reconnect: true
+  database: heroku_5f24cecb5413283
+  host: us-cdbr-east-03.cleardb.com
   pool: 5
-  username: root
-  password:
-  socket: /tmp/mysql.sock
+  username: b35963f6425199
+  password: d6c92041
+
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
