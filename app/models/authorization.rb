@@ -1,6 +1,5 @@
-require "delayed_job"
-
 class Authorization < ActiveRecord::Base
+  scope :with_valid_session_tokens, lambda { where('updated_at >= ?', 2.hours.ago) }
   has_secure_password
   
   belongs_to :user, 
@@ -22,15 +21,9 @@ class Authorization < ActiveRecord::Base
   before_validation :create_password, :unless => :password
   before_save :create_session_token, :unless => :session_token
   after_commit :send_password_notification
-
-  # validate :alarm_set_in_the_future
+  validates_associated :user
 
   private
-    def alarm_set_in_the_future
-      if time <= DateTime.current
-        errors.add(:alarm, "Please Choose A Future Date & Time")
-      end
-    end
 
     def create_password
       # Random password
@@ -40,20 +33,11 @@ class Authorization < ActiveRecord::Base
       self.password_confirmation = self.new_password
     end
 
-
     def send_password_notification
       PasswordMailer.password_email(self).deliver
     end
 
     def create_session_token(length=64)
       self.session_token = SecureRandom.urlsafe_base64(length)
-    end
-    
-    def self.sweep(time = 2.hour)
-      if time.is_a?(String)
-        time = time.split.inject { |count, unit| count.to_i.send(unit) }
-      end
-   
-      delete_all "updated_at < '#{time.ago.to_s(:db)}'"
     end
 end
