@@ -1,8 +1,4 @@
-// @import "bootstrap";
-
 /* mixins, variables, etc. */
-
-// $grayMediumLight: #eaeaea;
 
 @mixin box_sizing {
   -moz-box-sizing: border-box; 
@@ -19,4 +15,51 @@
   margin-top: 45px;
   border: 2px solid black;
   @include box_sizing;
+}
+
+header {
+  background-color: #fff;
+  color: #333;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 400%;
+  padding: 30px;
+  line-height: 120%;
+  float: right;
+  width: 500px;
+}
+
+section {
+  font-size: 200%;
+  padding: 30px;
+  line-height: 120%;
+  float: left;
+  width: 500px;
+}
+
+h1 {
+  font-family:  inherit;
+  font-size:  400%;
+  padding: 30px;
+}
+
+// .field, .actions { font-size:  300%; }
+.field, .actions { padding: 30px; }
+
+.actions { float:right;}
+
+input, select, textarea, button {
+  font-family:  inherit;
+  font-size:  100%;
+  -webkit-appearance: button;
+  -webkit-box-shadow: 1px 1px 1px #fff;
+  -webkit-border-radius: 0.5em;
+}
+
+#flash_notice {
+  color: green;
+  font-size:  60%;
+}
+
+#red {
+  color:red;
 }

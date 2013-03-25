@@ -9,6 +9,8 @@
     = f.fields_for :user do |builder|
       = builder.label :email
       = builder.text_field :email
-  .actions
-    = f.submit 'Send password'
+      = f.submit 'Send password'
+
+  / .actions
+  /   = f.submit 'Send password'
     

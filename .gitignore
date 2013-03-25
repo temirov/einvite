@@ -20,6 +20,8 @@
 # Ignore Sublime Text files
 eInvite.sublime-project
 eInvite.sublime-workspace
+*.sublime-project
+*.sublime-workspace
 
 # Ignore Heroku-related environment
 .env

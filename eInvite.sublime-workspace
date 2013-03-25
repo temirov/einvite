@@ -256,34 +256,42 @@
 	"buffers":
 	[
 		{
-			"file": "Gemfile",
+			"file": "app/assets/stylesheets/custom.css.scss",
 			"settings":
 			{
-				"buffer_size": 855,
+				"buffer_size": 761,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "config/environment.rb",
+			"file": "app/assets/stylesheets/scaffolds.css.scss",
 			"settings":
 			{
-				"buffer_size": 151,
+				"buffer_size": 1027,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "config/application.rb",
+			"file": "app/views/authorizations/new.html.haml",
 			"settings":
 			{
-				"buffer_size": 2916,
+				"buffer_size": 127,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "config/database.yml",
+			"file": "app/views/users/edit.html.haml",
 			"settings":
 			{
-				"buffer_size": 952,
+				"buffer_size": 94,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/competitions/index.html.haml",
+			"settings":
+			{
+				"buffer_size": 578,
 				"line_ending": "Unix"
 			}
 		}
@@ -416,27 +424,35 @@
 	},
 	"file_history":
 	[
-		"/Users/temirov/Documents/Development/eInvite/Gemfile",
-		"/Users/temirov/Documents/Development/eInvite/app/mailers/password_mailer.rb",
-		"/Users/temirov/Documents/Development/eInvite/app/views/authorizations/_edit_form.html.haml",
-		"/Users/temirov/Documents/Development/eInvite/app/views/password_mailer/password_email.text.haml",
-		"/Users/temirov/Documents/Development/eInvite/app/views/password_mailer/password_email.html.haml",
-		"/Users/temirov/Documents/Development/eInvite/app/controllers/authorizations_controller.rb",
-		"/Users/temirov/Documents/Development/eInvite/app/models/competition.rb",
+		"/Users/temirov/Documents/Development/eInvite/app/views/authorizations/_new_form.html.haml",
+		"/Users/temirov/Documents/Development/eInvite/app/assets/stylesheets/authorizations.css.scss",
+		"/Users/temirov/Documents/Development/eInvite/app/views/layouts/_authorization_new_form.html.haml",
+		"/Users/temirov/Documents/Development/eInvite/app/views/layouts/_navigation.html.haml",
+		"/Users/temirov/Documents/Development/eInvite/app/views/site/index.html.haml",
+		"/Users/temirov/Documents/Development/eInvite/.gitignore",
 		"/Users/temirov/Documents/Development/eInvite/app/models/authorization.rb",
+		"/Users/temirov/Documents/Development/eInvite/app/controllers/authorizations_controller.rb",
+		"/Users/temirov/Documents/Development/eInvite/app/helpers/authorizations_helper.rb",
+		"/Users/temirov/Documents/Development/eInvite/app/controllers/users_controller.rb",
+		"/Users/temirov/Documents/Development/eInvite/Gemfile",
+		"/Users/temirov/Documents/Development/eInvite/config/environments/development.rb",
+		"/Users/temirov/Documents/Development/eInvite/config/routes.rb",
+		"/Users/temirov/Documents/Development/eInvite/app/views/password_mailer/password_email.html.haml",
+		"/Users/temirov/Documents/Development/eInvite/app/views/password_mailer/password_email.text.haml",
+		"/Users/temirov/Documents/Development/eInvite/app/mailers/password_mailer.rb",
+		"/Users/temirov/Documents/Development/eInvite/config/environments/production.rb",
+		"/Users/temirov/Documents/Development/eInvite/config/environment.rb",
+		"/Users/temirov/Documents/Development/eInvite/config/application.rb",
+		"/Users/temirov/Documents/Development/eInvite/Procfile.backup",
 		"/Users/temirov/Documents/Development/eInvite/config/database.yml",
+		"/Users/temirov/Documents/Development/eInvite/app/views/authorizations/_edit_form.html.haml",
+		"/Users/temirov/Documents/Development/eInvite/app/models/competition.rb",
 		"/Users/temirov/Documents/Development/eInvite/Procfile",
 		"/Users/temirov/Documents/Development/eInvite/app/controllers/application_controller.rb",
-		"/Users/temirov/Documents/Development/eInvite/config/environments/development.rb",
 		"/Users/temirov/Documents/Development/eInvite/config/initializers/mail_setup.rb",
 		"/Users/temirov/Documents/Development/eInvite/app/helpers/password_by_mail_intercepter.rb",
 		"/Users/temirov/Documents/Development/eInvite/app/controllers/competitions_controller.rb",
-		"/Users/temirov/Documents/Development/eInvite/app/helpers/authorizations_helper.rb",
-		"/Users/temirov/Documents/Development/eInvite/app/controllers/users_controller.rb",
 		"/Users/temirov/Documents/Development/eInvite/app/views/layouts/application.html.haml",
-		"/Users/temirov/Documents/Development/eInvite/app/views/layouts/_authorization_new_form.html.haml",
-		"/Users/temirov/Documents/Development/eInvite/app/views/layouts/_navigation.html.haml",
-		"/Users/temirov/Documents/Development/eInvite/.gitignore",
 		"/Users/temirov/Documents/Development/eInvite/db/schema.rb",
 		"/Users/temirov/Documents/Development/eInvite/app/models/user.rb",
 		"/Users/temirov/Documents/Development/eInvite/app/views/authorizations/show.html.haml",
@@ -445,7 +461,6 @@
 		"/Users/temirov/Documents/Development/eInvite/db/migrate/20130323024952_create_competitions_users_join_table.rb",
 		"/Users/temirov/Documents/Development/eInvite/app/views/authorizations/index.html.haml",
 		"/Users/temirov/Documents/Development/eInvite/app/views/competitions/show.html.haml",
-		"/Users/temirov/Documents/Development/eInvite/config/routes.rb",
 		"/Users/temirov/Documents/Development/eInvite/app/views/users/show.html.haml",
 		"/Users/temirov/Documents/Development/eInvite/db/migrate/20130323020452_add_competition_id_to_user.rb",
 		"/Users/temirov/Documents/Development/eInvite/db/migrate/20130323020237_add_competition_id_to_user.rb",
@@ -457,17 +472,13 @@
 		"/Users/temirov/Documents/Development/eInvite/app/views/site/show.html.haml",
 		"/Users/temirov/Documents/Development/eInvite/app/views/competitions/navigation.html.haml",
 		"/Users/temirov/Documents/Development/eInvite/app/views/authorizations/new.html.haml",
-		"/Users/temirov/Documents/Development/eInvite/app/views/authorizations/_new_form.html.haml",
 		"/Users/temirov/Documents/Development/eInvite/app/views/users/_form.html.haml",
 		"/Users/temirov/Documents/Development/eInvite/app/views/authorizations/edit.html.haml",
 		"/Users/temirov/Documents/Development/eInvite/app/views/authorizations/_edit.html.haml",
 		"/Users/temirov/Documents/Development/eInvite/app/views/password_mailer/password_email.html.erb",
 		"/Users/temirov/Documents/Development/eInvite/app/helpers/application_helper.rb",
-		"/Users/temirov/Documents/Development/eInvite/config/application.rb",
 		"/Users/temirov/Documents/Development/eInvite/app/views/authorizations/_form.html.haml",
-		"/Users/temirov/Documents/Development/eInvite/app/assets/stylesheets/authorizations.css.scss",
 		"/Users/temirov/Documents/Development/eInvite/app/assets/stylesheets/scaffolds.css.scss",
-		"/Users/temirov/Documents/Development/eInvite/config/environment.rb",
 		"/Users/temirov/Documents/Development/eInvite/app/helpers/sessions_helper.rb",
 		"/Users/temirov/Documents/Development/eInvite/app/views/sessions/_form.html.haml",
 		"/Users/temirov/Documents/Development/eInvite/db/migrate/20130304031332_add_email_index_to_users.rb",
@@ -540,10 +551,7 @@
 		"/Users/temirov/Documents/Development/Chirpathon/chirpathon/app/views/site/blog.html.haml",
 		"/Users/temirov/Documents/Development/Chirpathon/chirpathon/config/routes.rb",
 		"/Users/temirov/Documents/Development/Chirpathon/chirpathon/app/views/site/register.html.haml",
-		"/Users/temirov/Documents/Development/Chirpathon/chirpathon/config/environment.rb",
-		"/Users/temirov/Documents/Development/Chirpathon/chirpathon/app/models/contender.rb",
-		"/Users/temirov/Documents/Development/Chirpathon/chirpathon/config/initializers/twitter.rb",
-		"/Users/temirov/Documents/Development/Chirpathon/chirpathon/app/controllers/application_controller.rb"
+		"/Users/temirov/Documents/Development/Chirpathon/chirpathon/config/environment.rb"
 	],
 	"find":
 	{
@@ -551,9 +559,10 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 101.0,
 		"where_history":
 		[
+			"<project>",
 			"/Users/temirov/Documents/Development/eInvite/app/assets",
 			"<project>",
 			"/Users/temirov/Documents/Development/eInvite",
@@ -565,6 +574,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"debugger",
 			"green",
 			"competitions_path",
 			"  = link_to 'Log Out', logout_path, :method => :delete\n",
@@ -691,8 +701,7 @@
 			"dbUniqueSputniksParticipants",
 			"participants",
 			"partic",
-			"getSputniksForEvent",
-			"geteventdet"
+			"getSputniksForEvent"
 		],
 		"highlight": false,
 		"in_selection": false,
@@ -713,23 +722,23 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 4,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "Gemfile",
+					"file": "app/assets/stylesheets/custom.css.scss",
 					"settings":
 					{
-						"buffer_size": 855,
+						"buffer_size": 761,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								580,
+								580
 							]
 						],
 						"settings":
@@ -822,28 +831,28 @@
 								"Ruby on Rails": "ruby"
 							},
 							"sublimelinter_wrap_find": true,
-							"syntax": "Packages/Ruby/Ruby.tmLanguage"
+							"syntax": "Packages/SCSS/SCSS.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 248.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "config/environment.rb",
+					"file": "app/assets/stylesheets/scaffolds.css.scss",
 					"settings":
 					{
-						"buffer_size": 151,
+						"buffer_size": 1027,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								82,
-								82
+								292,
+								306
 							]
 						],
 						"settings":
@@ -936,7 +945,123 @@
 								"Ruby on Rails": "ruby"
 							},
 							"sublimelinter_wrap_find": true,
-							"syntax": "Packages/Ruby/Ruby.tmLanguage"
+							"syntax": "Packages/SCSS/SCSS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 752.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/views/authorizations/new.html.haml",
+					"settings":
+					{
+						"buffer_size": 127,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2,
+								2
+							]
+						],
+						"settings":
+						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110.0
+							],
+							"gjslint_options":
+							[
+							],
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"evil": true,
+								"regexdash": true,
+								"sub": true,
+								"trailing": true,
+								"wsh": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"sublimelinter": true,
+							"sublimelinter_delay": 2.0,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": false,
+							"sublimelinter_mark_style": "outline",
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
+							},
+							"sublimelinter_wrap_find": true,
+							"syntax": "Packages/Rails/Ruby Haml.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -945,19 +1070,19 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "config/application.rb",
+					"buffer": 3,
+					"file": "app/views/users/edit.html.haml",
 					"settings":
 					{
-						"buffer_size": 2916,
+						"buffer_size": 94,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2905,
-								2905
+								8,
+								8
 							]
 						],
 						"settings":
@@ -1050,30 +1175,28 @@
 								"Ruby on Rails": "ruby"
 							},
 							"sublimelinter_wrap_find": true,
-							"syntax": "Packages/Ruby/Ruby.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/Rails/Ruby Haml.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 647.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "config/database.yml",
+					"buffer": 4,
+					"file": "app/views/competitions/index.html.haml",
 					"settings":
 					{
-						"buffer_size": 952,
+						"buffer_size": 578,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								864,
-								864
+								27,
+								27
 							]
 						],
 						"settings":
@@ -1166,12 +1289,12 @@
 								"Ruby on Rails": "ruby"
 							},
 							"sublimelinter_wrap_find": true,
-							"syntax": "Packages/YAML/YAML.tmLanguage",
+							"syntax": "Packages/Rails/Ruby Haml.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 290.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

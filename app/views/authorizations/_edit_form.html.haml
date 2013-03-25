@@ -9,10 +9,7 @@
     = f.fields_for :user do |builder|
       = builder.label :email
       = builder.text_field :email, :readonly => true
-  .field
     = f.label :password
     = f.text_field :password
   .actions
     = f.submit 'Log In'
-  / .field
-  /   = f.label @authorization.plain_password, :id => "red"

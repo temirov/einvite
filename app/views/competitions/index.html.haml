@@ -1,19 +1,22 @@
-%h1 Listing competitions
+/ %h1 Listing competitions
 
-%table
-  %tr
-    %th Name
-    %th
-    %th
-    %th
+- if @competitions.present?
+  Listing competitions
 
-  - @competitions.each do |competition|
+  %table
     %tr
-      %td= competition.name
-      / %td= link_to 'Show', user_competition_path(current_user, competition)
-      / %td= link_to 'Edit', edit_user_competition_path(current_user, competition)
-      %td= link_to 'Edit', edit_competition_path(competition)
-      %td= link_to 'Destroy', competition, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %th Name
+      %th
+      %th
+      %th
+
+    - @competitions.each do |competition|
+      %tr
+        %td= competition.name
+        / %td= link_to 'Show', user_competition_path(current_user, competition)
+        / %td= link_to 'Edit', edit_user_competition_path(current_user, competition)
+        %td= link_to 'Edit', edit_competition_path(competition)
+        %td= link_to 'Destroy', competition, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
