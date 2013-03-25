@@ -19,10 +19,10 @@ class AuthorizationsController < ApplicationController
     @authorization = Authorization.find(params[:id])
 
     respond_to do |format|
+      reset_session
       if @authorization.try(:authenticate, params[:authorization][:password])
-        reset_session
         sign_in @authorization
-        format.html { redirect_to edit_user_path(@authorization.user), notice: 'Logged in successfully.' }
+        format.html { redirect_to edit_user_path(@authorization.user), notice: 'Logged in successfully' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -36,27 +36,25 @@ class AuthorizationsController < ApplicationController
     # TODO: redundant code, refactor!
 
     respond_to do |format|
-      if @authorization.present? 
-        if @authorization.update_attributes(params[:authorization])
-          # PasswordMailer.password_email(@authorization).deliver        
-          # PasswordMailer.delay.password_email(@authorization)        
-          format.html { redirect_to edit_authorization_path(@authorization), notice: 'Password was sent successfully.' }
-          format.json { render json: @authorization, status: :created, location: @authorization }
-        else
-          format.html { render action: "new" }
-          format.json { render json: @authorization.errors, status: :unprocessable_entity }
-        end
+      if @authorization.present?
+        authorization_redirect(@authorization.update_attributes(params[:authorization]))
+#        if @authorization.update_attributes(params[:authorization])
+#          format.html { redirect_to edit_authorization_path(@authorization), notice: 'Password was sent successfully.' }
+#          format.json { render json: @authorization, status: :created, location: @authorization }
+#        else
+#          format.html { render action: "new" }
+#          format.json { render json: @authorization.errors, status: :unprocessable_entity }
+#        end
       else
         @authorization = Authorization.new(params[:authorization])
-        if @authorization.save
-          # PasswordMailer.password_email(@authorization).deliver
-          # PasswordMailer.delay.password_email(@authorization)
-          format.html { redirect_to edit_authorization_path(@authorization), notice: 'Password was sent successfully.' }
-          format.json { render json: @authorization, status: :created, location: @authorization }
-        else
-          format.html { render action: "new" }
-          format.json { render json: @authorization.errors, status: :unprocessable_entity }
-        end
+        authorization_redirect(@authorization.save)
+#        if @authorization.save
+#          format.html { redirect_to edit_authorization_path(@authorization), notice: 'Password was sent successfully.' }
+#          format.json { render json: @authorization, status: :created, location: @authorization }
+#        else
+#          format.html { render action: "new" }
+#          format.json { render json: @authorization.errors, status: :unprocessable_entity }
+#        end
       end
     end
   end
@@ -76,29 +74,18 @@ class AuthorizationsController < ApplicationController
     end
 
     def successful_authorization(authorization)
-      debugger
-      PasswordMailer.password_email(authorization).deliver
-      sign_in authorization
-      # redirect_to session[:return_to], notice: 'Authorization was successful'
-      # session.delete(:return_to)
-      # redirect_to :back, notice: 'Authorization was successful'
-
+      @authorization = authorization
       respond_to do |format|
-        format.html { redirect_to edit_user_path(authorization.user.id) }
+        format.html { redirect_to edit_authorization_path(@authorization), notice: 'New password has been sent successfully.' }
+        format.json { render json: @authorization, status: :created, location: @authorization }
       end
-      
-    #   redirect_to :back
-    # rescue ActionController::RedirectBackError
-    #   # redirect_to root_path
-    #   respond_to do |format|
-    #     format.html { redirect_to edit_user_path(authorization.user.id) }
-    #   end
     end
     
     def unsuccessful_authorization(authorization)
+      @authorization = authorization
       respond_to do |format|
         format.html { render action: "new" }
-        format.json { render json: authorization.errors, status: :unprocessable_entity }
+        format.json { render json: @authorization.errors, status: :unprocessable_entity }
       end
     end
 end
