@@ -24,8 +24,9 @@ header {
   font-size: 400%;
   padding: 30px;
   line-height: 120%;
+  // text-align: right;
   float: right;
-  width: 500px;
+  width: 350px;
 }
 
 section {
@@ -58,6 +59,7 @@ input, select, textarea, button {
 #flash_notice {
   color: green;
   font-size:  60%;
+  line-height: 80%;
 }
 
 #red {
