@@ -19,8 +19,9 @@ class Authorization < ActiveRecord::Base
                   :user_attributes
 
   after_initialize :build_user, :unless => :user 
-  before_validation :send_password_notification, :unless => :password
+  before_validation :create_password, :unless => :password
   before_save :create_session_token, :unless => :session_token
+  after_commit :send_password_notification
 
   # validate :alarm_set_in_the_future
 
@@ -31,14 +32,16 @@ class Authorization < ActiveRecord::Base
       end
     end
 
-    def send_password_notification
+    def create_password
       # Random password
       # @password = (0...8).map{(65+rand(26)).chr}.join
-      @authorization = self
       self.new_password = (0...4).map{ SecureRandom.random_number(10) }.join
       self.password = self.new_password
       self.password_confirmation = self.new_password
-      # PasswordMailer.delay.password_email(@authorization)
+    end
+
+
+    def send_password_notification
       PasswordMailer.password_email(self).deliver
     end
 
