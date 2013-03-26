@@ -4,8 +4,6 @@ class CompetitionsController < ApplicationController
   # GET /competitions
   # GET /competitions.json
   def index
-
-    # @competitions = Competition.all
     @competitions = current_user.competitions
 
     respond_to do |format|
