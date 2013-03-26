@@ -1,5 +1,5 @@
 class PasswordMailer < ActionMailer::Base
-  default from: "eInvite@temirov.net"
+  default from: "support@chirpathon.com"
 
   def password_email(authorization)
     @authorization = authorization
