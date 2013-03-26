@@ -1,10 +1,8 @@
 ActionMailer::Base.smtp_settings = {
-    :address => "smtp.1and1.com",
-    :port => 587,
-    :domain => "1and1.com",
-    :authentication => :login,
-    :user_name => "eInvite@temirov.net",
-    :password => "1and1.eInvite"
-  }
-
-# ActionMailer::Base.register_interceptor(PasswordByMailIntercepter)
+  :address        => "smtpout.secureserver.net",
+  :domain         => "www.chirpathon.com",
+  :port           => 80,
+  :user_name      => "support@chirpathon.com",
+  :password       => "1974.Chirpathon",
+  :authentication => :plain
+}
