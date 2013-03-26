@@ -11,6 +11,9 @@ class Authorization < ActiveRecord::Base
 
   attr_accessor :email, :new_password
 
+  attr_reader :recent
+  alias :recent? :recent
+
   attr_accessible :password, 
                   :new_password, 
                   :session_token, 
@@ -24,6 +27,10 @@ class Authorization < ActiveRecord::Base
   validates_associated :user
 
   private
+
+    def recent
+      @recent = self.with_valid_session_tokens.present?
+    end
 
     def create_password
       # Random password
