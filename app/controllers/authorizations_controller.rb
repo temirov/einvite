@@ -17,8 +17,8 @@ class AuthorizationsController < ApplicationController
 
   def update
     @authorization = Authorization.find(params[:id])
-
-    if @authorization.recent?
+    debugger
+    if @authorization.recently_updated?
       respond_to do |format|
         reset_session
         if @authorization.try(:authenticate, params[:authorization][:password])
@@ -31,7 +31,7 @@ class AuthorizationsController < ApplicationController
         end
       end
     else
-      unsuccessful_authorization
+      unsuccessful_authorization @authorization
     end
   end
 
