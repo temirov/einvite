@@ -1,6 +1,8 @@
 class Authorization < ActiveRecord::Base
-  scope :with_valid_session_tokens, lambda { where('updated_at >= ?', 2.hours.ago) }
   has_secure_password
+  
+  validates :updated_at, :numericality => { :greater_than_or_equal_to => 2.hours.ago,
+                                            :message => "Your authorization has expired." }
   
   belongs_to :user, 
              :inverse_of => :authorization, 
@@ -10,9 +12,6 @@ class Authorization < ActiveRecord::Base
                                 :update_only => true
 
   attr_accessor :email, :new_password
-
-  attr_reader :recent
-  alias :recent? :recent
 
   attr_accessible :password, 
                   :new_password, 
@@ -25,12 +24,16 @@ class Authorization < ActiveRecord::Base
   before_save :create_session_token, :unless => :session_token
   after_commit :send_password_notification
   validates_associated :user
+  
+  def self.with_valid_update_time(time=2.hours.ago)
+    where('updated_at >= ?', time)
+  end
+  
+  def recently_updated?(time=2.hours.ago)
+    updated_at >= time
+  end
 
   private
-
-    def recent
-      @recent = self.with_valid_session_tokens.present?
-    end
 
     def create_password
       # Random password
