@@ -1,8 +1,13 @@
 class Authorization < ActiveRecord::Base
   has_secure_password
+  # validate :authorization_must_be_less_than_2_hours_old
   
-  validates :updated_at, :numericality => { :greater_than_or_equal_to => 2.hours.ago,
-                                            :message => "Your authorization has expired." }
+  # validates :updated_at, :numericality => { :greater_than_or_equal_to => lambda {|time| where("updated_at > ?", time)},
+  #                                           :message => "Your authorization has expired." }
+
+  # validates_numericality_of :updated_at,
+  #   :unless => lambda { |a| a.updated_at < 2.hours.ago },
+  #   :message => "Your authorization has expired."
   
   belongs_to :user, 
              :inverse_of => :authorization, 
@@ -34,6 +39,11 @@ class Authorization < ActiveRecord::Base
   end
 
   private
+    #unused
+    def authorization_must_be_less_than_2_hours_old
+      errors.add :base, "Your previous authorization has expired." unless 
+        updated_at.present? and updated_at >= 2.hours.ago
+    end
 
     def create_password
       # Random password
