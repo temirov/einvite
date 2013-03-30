@@ -17,7 +17,7 @@ class AuthorizationsController < ApplicationController
 
   def update
     @authorization = Authorization.find(params[:id])
-    debugger
+
     if @authorization.recently_updated?
       respond_to do |format|
         reset_session
@@ -26,11 +26,14 @@ class AuthorizationsController < ApplicationController
           format.html { redirect_to edit_user_path(@authorization.user), notice: 'Logged in successfully' }
           format.json { head :no_content }
         else
+          @authorization.errors.add :password, "is incorrect."
           format.html { render action: "edit" }
           format.json { render json: @authorization.errors, status: :unprocessable_entity }
         end
       end
     else
+      @authorization.errors.add :base, "Your previous authorization has expired."
+      # Need to resend the password
       unsuccessful_authorization @authorization
     end
   end
